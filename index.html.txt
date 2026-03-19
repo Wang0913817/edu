@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>成人继续教育学院 - 报名与助学金申请</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:微软雅黑,sans-serif}
+        body{background:#f5f7fa;color:#333}
+        .top-bar {background:#2c3e50;color:#fff;padding:10px 20px;font-size:18px;font-weight:bold;}
+        .header{background:#2c3e50;color:#fff;padding:20px 0;text-align:center}
+        .nav{background:#34495e;padding:15px;text-align:center}
+        .nav a{color:#fff;margin:0 15px;text-decoration:none;font-weight:500}
+        .container{max-width:1000px;margin:30px auto;padding:0 20px}
+        .card{background:#fff;border-radius:10px;padding:25px;margin-bottom:25px;box-shadow:0 2px 10px rgba(0,0,0,0.08)}
+        .card h2{margin-bottom:15px;color:#2c3e50;border-left:4px solid #3498db;padding-left:10px}
+        .form-group{margin-bottom:15px}
+        .form-group label{display:block;margin-bottom:8px;font-weight:500}
+        .form-group input,.form-group select,.form-group textarea{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;font-size:15px}
+        .btn{background:#3498db;color:#fff;border:none;padding:12px 25px;border-radius:6px;cursor:pointer;font-size:16px;width:100%}
+        .btn:hover{background:#2980b9}
+        .footer{background:#2c3e50;color:#fff;text-align:center;padding:20px;margin-top:40px}
+        .tab{display:flex;margin-bottom:20px}
+        .tab button{flex:1;padding:12px;background:#eee;border:none;cursor:pointer}
+        .tab button.active{background:#3498db;color:#fff}
+        .tab-content{display:none}
+        .tab-content.show{display:block}
+        .modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:999;}
+        .modal-content{background:#fff;width:90%;max-width:450px;padding:30px;border-radius:10px;position:relative;}
+        .close{position:absolute;right:15px;top:10px;font-size:20px;cursor:pointer}
+        .float-contact{position:fixed;right:20px;bottom:20px;z-index:99;}
+        .float-btn{background:#3498db;color:#fff;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,0.2)}
+        .contact-box{background:#fff;padding:15px;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,0.1);margin-bottom:10px;display:none;}
+        .contact-box p{margin-bottom:5px;font-size:14px}
+    </style>
+</head>
+<body>
+
+<div class="top-bar">继续教育助学点</div>
+<div class="header">
+    <h1>成人继续教育学院</h1>
+    <p>自考本科 | 成人高考 | 国家开放大学 | 助学金申请</p >
+</div>
+
+<div class="nav">
+    <a href=" ">首页</a >
+    <a href="javascript:openTab('tab1')">学员注册</a >
+    <a href="javascript:openTab('tab2')">报名报考</a >
+    <a href="javascript:openTab('tab3')">助学金申请</a >
+</div>
+
+<div class="container">
+    <div class="card" id="home">
+        <h2>热门专业：汉语言文学 行政管理（本科）</h2>
+        <p>? 简单易考，通过率高</p >
+        <p>? 学制短，1.5-2年毕业</p >
+        <p>? 考公、考编、教师资格证通用</p >
+        <p>? 学信网终身可查</p >
+    </div>
+
+    <div class="card">
+        <div class="tab">
+            <button class="tablink active" onclick="openTab('tab1')">学员注册</button>
+            <button class="tablink" onclick="openTab('tab2')">报名报考</button>
+            <button class="tablink" onclick="openTab('tab3')">助学金申请</button>
+        </div>
+
+        <div id="tab1" class="tab-content show">
+            <h2>学员注册</h2>
+            <div class="form-group"><label>姓名</label><input type="text" id="reg_name" placeholder="请输入真实姓名"></div>
+            <div class="form-group"><label>身份证号</label><input type="text" id="reg_idcard" placeholder="请输入18位身份证号"></div>
+            <div class="form-group"><label>手机号码</label><input type="text" id="reg_phone" placeholder="请输入手机号"></div>
+            <div class="form-group"><label>设置密码</label><input type="password" id="reg_pwd" placeholder="请设置登录密码"></div>
+            <button class="btn" onclick="registerSubmit()">立即注册</button>
+        </div>
+
+        <div id="tab2" class="tab-content">
+            <h2>院校专业报名</h2>
+            <div class="form-group"><label>报考层次</label><select id="apply_level"><option>高起专</option><option>专升本</option><option>本科第二学历</option></select></div>
+            <div class="form-group"><label>报考专业</label><select id="apply_major"><option>汉语言文学</option><option>行政管理<option><option>会计学<option><option>学前教育</option><option>小学教育<option><option>计算机科学与技术<option><option>药学<option><option>护理学<option><option>工商管理</option><option>法学</option></select></div>
+            <div class="form-group"><label>最高学历</label><select id="apply_edu"><option>高中/中专</option><option>专科</option><option>本科</option></select></div>
+            <div class="form-group"><label>姓名</label><input type="text" id="apply_name" placeholder="与身份证一致"></div>
+            <div class="form-group"><label>联系电话</label><input type="text" id="apply_tel" placeholder="用于接收通知"></div>
+            <button class="btn" onclick="applySubmit()">提交报名</button>
+        </div>
+
+        <div id="tab3" class="tab-content">
+            <h2>助学金补贴申请</h2>
+            <div class="form-group"><label>学员姓名</label><input type="text" id="jxj_name" placeholder="请输入姓名"></div>
+            <div class="form-group"><label>身份证号</label><input type="text" id="jxj_idcard"></div>
+            <div class="form-group"><label>申请类型</label><select id="jxj_type"><option>贫困生补助</option><option>退役军人补助</option><option>优秀学员奖学金</option><option>企业团报补贴</option></select></div>
+            <div class="form-group"><label>申请说明</label><textarea rows="4" id="jxj_remark" placeholder="简要说明申请理由"></textarea></div>
+            <button class="btn" onclick="jxjSubmit()">提交助学金申请</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>我们的优势</h2>
+        <p>? 全程一对一教务指导</p >
+        <p>? 无二次收费，透明公开</p >
+        <p>? 助学加分，提高通过率</p >
+        <p>? 学信网可查，国家承认</p >
+    </div>
+</div>
+
+<div class="modal" id="popModal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 style="text-align:center; margin-bottom:20px">快捷报名</h2>
+        <div class="form-group"><label>姓名</label><input type="text" id="pop_name" placeholder="请输入姓名"></div>
+        <div class="form-group"><label>电话</label><input type="text" id="pop_tel" placeholder="请输入手机号"></div>
+        <button class="btn" onclick="popSubmit()">确认提交报名</button>
+    </div>
+</div>
+
+<div class="float-contact">
+    <div class="contact-box" id="contactBox">
+        <p>?? 咨询电话：18963470730</p >
+        <p>?? 咨询微信：hd50788</p >
+    </div>
+    <div class="float-btn" onclick="toggleContact()">??</div>
+</div>
+
+<div class="footer">
+    <p>成人继续教育学院 ? 版权所有</p >
+    <p>咨询热线：400-XXXX-XXXX</p >
+</div>
+
+<script>
+    function openTab(tabId) {
+        var tabcontent = document.getElementsByClassName("tab-content");
+        for (var i = 0; i < tabcontent.length; i++) tabcontent[i].classList.remove("show");
+        var tablink = document.getElementsByClassName("tablink");
+        for (var i = 0; i < tablink.length; i++) tablink[i].classList.remove("active");
+        document.getElementById(tabId).classList.add("show");
+        event.currentTarget.classList.add("active");
+    }
+    function registerSubmit(){ alert("注册成功！"); }
+    function applySubmit(){ alert("报名提交成功！老师会尽快联系您！"); }
+    function jxjSubmit(){ alert("助学金申请已提交！请等待审核！"); }
+    function closeModal(){ document.getElementById("popModal").style.display = "none"; }
+    function popSubmit(){ alert("快捷报名提交成功！"); closeModal(); }
+    function toggleContact(){
+        var box = document.getElementById("contactBox");
+        box.style.display = box.style.display=="block" ? "none" : "block";
+    }
+</script>
+</body>
+</html>
